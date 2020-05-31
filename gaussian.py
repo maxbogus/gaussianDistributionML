@@ -126,7 +126,6 @@ class Gaussian(Distribution):
         return x, y
 
     def __add__(self, other):
-            
         """Magic method to add together two Gaussian distributions
         
         Args:
@@ -145,8 +144,7 @@ class Gaussian(Distribution):
         return result
 
     def __repr__(self):
-        
-        """Magic method to output the characteristics of the Gaussian instance
+        """Function to output the characteristics of the Gaussian instance
         
         Args:
             None
@@ -155,5 +153,5 @@ class Gaussian(Distribution):
             string: characteristics of the Gaussian
         
         """
-
+        
         return "mean {}, standard deviation {}".format(self.mean, self.stdev)
