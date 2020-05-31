@@ -1,5 +1,6 @@
 import math
 import matplotlib.pyplot as plt
+
 from distribution import Distribution
 
 class Gaussian(Distribution):
@@ -14,9 +15,8 @@ class Gaussian(Distribution):
     """
     def __init__(self, mu = 0, sigma = 1):
         Distribution.__init__(self, mu, sigma)
-    
+
     def calculate_mean(self):
-    
         """Method to calculate the mean of the data set.
         
         Args: 
@@ -30,11 +30,8 @@ class Gaussian(Distribution):
         avg = 1.0 * sum (self.data) / len(self.data)
         self.mean = avg
         return self.mean
-                
-
 
     def calculate_stdev(self, sample=True):
-
         """Method to calculate the standard deviation of the data set.
         
         Args: 
@@ -44,20 +41,16 @@ class Gaussian(Distribution):
             float: standard deviation of the data set
     
         """
-        if len(self.data) == 0:
-            return 1
+        n_data = len(self.data) - 1 if sample else len(self.data)
+        mean = self.calculate_mean()
+        sigma = 0
 
-        result = 0
         for item in self.data:
-            result += (item-self.mean)**2
+            sigma += (item-mean)**2
 
-        if sample == True:
-            self.stdev = math.sqrt(result / (len(self.data)-1))
-        else:
-            self.stdev = math.sqrt(result / len(self.data))
-            
+        self.stdev = math.sqrt(sigma / n_data)
+
         return self.stdev
-        
 
     def read_data_file(self, file_name, sample=True):
     
