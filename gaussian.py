@@ -166,6 +166,25 @@ class Gaussian():
 
         return x, y
 
+    def __add__(self, other):
+            
+        """Magic method to add together two Gaussian distributions
+        
+        Args:
+            other (Gaussian): Gaussian instance
+            
+        Returns:
+            Gaussian: Gaussian distribution
+            
+        """
+        # create a new Gaussian object
+        result = Gaussian()
+
+        result.mean = self.mean+other.mean
+        result.stdev = math.sqrt(self.stdev**2+other.stdev**2)
+
+        return result
+
     def __repr__(self):
         
         """Magic method to output the characteristics of the Gaussian instance
