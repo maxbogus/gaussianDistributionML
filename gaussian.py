@@ -27,13 +27,8 @@ class Gaussian(Distribution):
     
         """
 
-        if len(self.data) == 0:
-            return 0
-
-        result = 0
-        for item in self.data:
-            result += item
-        self.mean = result / len(self.data)
+        avg = 1.0 * sum (self.data) / len(self.data)
+        self.mean = avg
         return self.mean
                 
 
