@@ -119,8 +119,7 @@ class Gaussian():
             float: probability density function output
         """
 
-        first_part = 1/math.sqrt(2*math.pi*(self.stdev**2))
-        return first_part*math.exp(-(x-self.mean)**2/2*self.stdev**2)
+        return 1/math.sqrt(2*math.pi*(self.stdev**2))*math.exp(-(x-self.mean)**2/2*self.stdev**2)
 
     def plot_histogram_pdf(self, n_spaces = 50):
 
