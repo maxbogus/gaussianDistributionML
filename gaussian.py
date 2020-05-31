@@ -52,34 +52,6 @@ class Gaussian(Distribution):
 
         return self.stdev
 
-    def read_data_file(self, file_name, sample=True):
-    
-        """Method to read in data from a txt file. The txt file should have
-        one number (float) per line. The numbers are stored in the data attribute. 
-        After reading in the file, the mean and standard deviation are calculated
-                
-        Args:
-            file_name (string): name of a file to read from
-        
-        Returns:
-            None
-        
-        """
-        
-        # This code opens a data file and appends the data to a list called data_list
-        with open(file_name) as file:
-            data_list = []
-            line = file.readline()
-            while line:
-                data_list.append(int(line))
-                line = file.readline()
-        file.close()
-        
-        self.data=data_list
-        self.mean = self.calculate_mean()
-        self.stdev = self.calculate_stdev(sample)
-                
-        
     def plot_histogram(self):
         """Method to output a histogram of the instance variable data using 
         matplotlib pyplot library.
@@ -90,10 +62,11 @@ class Gaussian(Distribution):
         Returns:
             None
         """
+        plt.hist(self.data)
+        plt.title('Histogram of Data')
+        plt.xlabel('data')
+        plt.ylabel('count')     
 
-        print(self.data)
-                
-        
     def pdf(self, x):
         """Probability density function calculator for the gaussian distribution.
         
