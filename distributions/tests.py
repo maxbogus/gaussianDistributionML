@@ -1,5 +1,5 @@
 # Unit tests to check your solution
-from gaussian import Gaussian
+from .distribution import Distribution as Gaussian
 import unittest
 
 class TestGaussianClass(unittest.TestCase):

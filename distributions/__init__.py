@@ -1,1 +1,1 @@
-from .distribution import Gaussian
+from .distribution import Distribution
