@@ -1,2 +1,6 @@
 # gaussianDistributionML
-Package for calculation of Gaussian Distribution
+Pypi package for calculation of Gaussian Distribution
+
+## Installation
+
+## Run
