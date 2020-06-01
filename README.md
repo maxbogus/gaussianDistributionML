@@ -2,6 +2,7 @@
 Pypi package for calculation of Gaussian Distribution
 
 ## Installation
-* Install ```$ pip install .```
+* To install my package please run: ```$ pip install .```
 
-## Run
+## Usage
+* Import package
