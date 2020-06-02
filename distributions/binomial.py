@@ -73,24 +73,13 @@ class Binomial(Distribution):
     
         """        
         
-        # TODO: The read_data_file() from the Generaldistribution class can read in a data
-        #       file. Because the Binomaildistribution class inherits from the Generaldistribution class,
-        #       you don't need to re-write this method. However,  the method
-        #       doesn't update the mean or standard deviation of
-        #       a distribution. Hence you are going to write a method that calculates n, p, mean and
-        #       standard deviation from a data set and then updates the n, p, mean and stdev attributes.
-        #       Assume that the data is a list of zeros and ones like [0 1 0 1 1 0 1]. 
-        #
-        #       Write code that: 
-        #           updates the n attribute of the binomial distribution
-        #           updates the p value of the binomial distribution by calculating the
-        #               number of positive trials divided by the total trials
-        #           updates the mean attribute
-        #           updates the standard deviation attribute
-        #
-        #       Hint: You can use the calculate_mean() and calculate_stdev() methods
-        #           defined previously.
-        pass
+        self.read_data_file('numbers_binomial.txt')
+        self.n = len(self.data)
+        self.p = sum(self.data) / self.n
+        self.calculate_mean()
+        self.calculate_stdev()
+
+        return self.p, self.n
         
     def plot_bar(self):
         """Function to output a histogram of the instance variable data using 
@@ -126,8 +115,9 @@ class Binomial(Distribution):
         Returns:
             float: probability density function output
         """
+        c = (math.factorial(self.n) / (math.factorial(k) * math.factorial(self.n - k)) )
 
-        return (math.factorial(self.n) / math.factorial(k)*math.factorial(self.n - k)) * (self.p**k) * (1-self.p)**(self.n-k)
+        return c * (self.p**k) * ((1-self.p)**(self.n-k))
 
     def plot_bar_pdf(self):
 
