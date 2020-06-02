@@ -12,12 +12,8 @@ class Binomial(Distribution):
         data_list (list of floats) a list of floats to be extracted from the data file
         p (float) representing the probability of an event occurring
         n (int) the total number of trials
-    
-    
-    TODO: Fill out all TODOs in the functions below
-            
     """
-    
+
     #       A binomial distribution is defined by two variables: 
     #           the probability of getting a positive outcome
     #           the number of trials
@@ -28,27 +24,15 @@ class Binomial(Distribution):
     #       You can then calculate the mean and standard deviation with the following formula:
     #           mean = p * n
     #           standard deviation = sqrt(n * p * (1 - p))
-    
     #       
     
     def __init__(self, prob=.5, size=20):
-        
-        # TODO: store the probability of the distribution in an instance variable p
-        # TODO: store the size of the distribution in an instance variable n
-        
-        # TODO: Now that you know p and n, you can calculate the mean and standard deviation
-        #       Use the calculate_mean() and calculate_stdev() methods to calculate the
-        #       distribution mean and standard deviation
-        #
-        #       Then use the init function from the Distribution class to initialize the
-        #       mean and the standard deviation of the distribution
-        #
-        #       Hint: You need to define the calculate_mean() and calculate_stdev() methods
-        #               farther down in the code starting in line 55. 
-        #               The init function can get access to these methods via the self
-        #               variable.   
-        pass            
-    
+        self.p = prob
+        self.n = size
+        mu = self.calculate_mean()
+        sigma = self.calculate_stdev()
+        Distribution.__init__(self, mu, sigma)
+
     def calculate_mean(self):
     
         """Function to calculate the mean from p and n
@@ -60,16 +44,11 @@ class Binomial(Distribution):
             float: mean of the data set
     
         """
-        
-        # TODO: calculate the mean of the Binomial distribution. Store the mean
-        #       via the self variable and also return the new mean value
-                
-        pass 
 
-
+        self.mean = self.p * self.n
+        return self.p * self.n
 
     def calculate_stdev(self):
-
         """Function to calculate the standard deviation from p and n.
         
         Args: 
@@ -79,16 +58,11 @@ class Binomial(Distribution):
             float: standard deviation of the data set
     
         """
-        
-        # TODO: calculate the standard deviation of the Binomial distribution. Store
-        #       the result in the self standard deviation attribute. Return the value
-        #       of the standard deviation.
-        pass
-        
-        
-        
+
+        self.stdev = self.p * self.n
+        return self.stdev
+
     def replace_stats_with_data(self):
-    
         """Function to calculate p and n from the data set
         
         Args: 
