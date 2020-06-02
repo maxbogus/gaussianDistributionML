@@ -58,8 +58,7 @@ class Binomial(Distribution):
             float: standard deviation of the data set
     
         """
-
-        self.stdev = self.p * self.n
+        self.stdev = math.sqrt(self.p * self.n*(1-self.p))
         return self.stdev
 
     def replace_stats_with_data(self):
@@ -136,7 +135,9 @@ class Binomial(Distribution):
         #   For example, if you flip a coin n = 60 times, with p = .5,
         #   what's the likelihood that the coin lands on heads 40 out of 60 times?
         
-        pass        
+        n_x = math.exp(self.n) / math.exp(k)*math.exp(self.n - k)
+
+        return n_x * self.p**k * (1-self.p)**(self.n-k)
 
     def plot_bar_pdf(self):
 
