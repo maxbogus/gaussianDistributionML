@@ -207,11 +207,5 @@ class Binomial(Distribution):
             string: characteristics of the Gaussian
         
         """
-        
-        # TODO: Define the representation method so that the output looks like
-        #       mean 5, standard deviation 4.5, p .8, n 20
-        #
-        #       with the values replaced by whatever the actual distributions values are
-        #       The method should return a string in the expected format
-    
-        pass
+
+        return "mean {}, standard deviation {}, p {}, n {}".format(self.mean, self.stdev, self.p, self.n)
