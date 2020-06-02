@@ -29,9 +29,8 @@ class Binomial(Distribution):
     def __init__(self, prob=.5, size=20):
         self.p = prob
         self.n = size
-        mu = self.calculate_mean()
-        sigma = self.calculate_stdev()
-        Distribution.__init__(self, mu, sigma)
+
+        Distribution.__init__(self, self.calculate_mean(), self.calculate_stdev())
 
     def calculate_mean(self):
     
@@ -46,7 +45,7 @@ class Binomial(Distribution):
         """
 
         self.mean = self.p * self.n
-        return self.p * self.n
+        return self.mean
 
     def calculate_stdev(self):
         """Function to calculate the standard deviation from p and n.
@@ -72,10 +71,8 @@ class Binomial(Distribution):
             float: the n value
     
         """        
-        
-        self.read_data_file('numbers_binomial.txt')
         self.n = len(self.data)
-        self.p = sum(self.data) / self.n
+        self.p = 1.0 * sum(self.data) / self.n
         self.calculate_mean()
         self.calculate_stdev()
 
@@ -91,19 +88,10 @@ class Binomial(Distribution):
         Returns:
             None
         """
-            
-        # TODO: Use the matplotlib package to plot a bar chart of the data
-        #       The x-axis should have the value zero or one
-        #       The y-axis should have the count of results for each case
-        #
-        #       For example, say you have a coin where heads = 1 and tails = 0.
-        #       If you flipped a coin 35 times, and the coin landed on
-        #       heads 20 times and tails 15 times, the bar chart would have two bars:
-        #       0 on the x-axis and 15 on the y-axis
-        #       1 on the x-axis and 20 on the y-axis
-        
-        #       Make sure to label the chart with a title, x-axis label and y-axis label
-        pass        
+        plt.bar(x = ['0', '1'], height = [(1 - self.p) * self.n, self.p * self.n])
+        plt.title('Bar Chart of Data')
+        plt.xlabel('outcome')
+        plt.ylabel('count')
         
     def pdf(self, k):
         """Probability density function calculator for the gaussian distribution.
@@ -131,17 +119,23 @@ class Binomial(Distribution):
             list: y values for the pdf plot
             
         """
-    
-        # TODO: Use a bar chart to plot the probability density function from
-        # k = 0 to k = n
+        x = [] 
+        y = []
         
-        #   Hint: You'll need to use the pdf() method defined above to calculate the
-        #   density function for every value of k.
-        
-        #   Be sure to label the bar chart with a title, x label and y label
+        # calculate the x values to visualize
+        for i in range(self.n + 1):
+            x.append(i)
+            y.append(self.pdf(i))
 
-        #   This method should also return the x and y values used to make the chart
-        #   The x and y values should be stored in separate lists
+        # make the plots
+        plt.bar(x, y)
+        plt.title('Distribution of Outcomes')
+        plt.ylabel('Probability')
+        plt.xlabel('Outcome')
+
+        plt.show()
+
+        return x, y
                 
     def __add__(self, other):
         """Function to add together two Binomial distributions with equal p
@@ -161,6 +155,8 @@ class Binomial(Distribution):
         binomial = Binomial()
         binomial.p = self.p
         binomial.n = self.n + other.n
+        binomial.calculate_mean()
+        binomial.calculate_stdev()
         
         return binomial
 
