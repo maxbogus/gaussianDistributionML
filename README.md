@@ -1,5 +1,6 @@
 # gaussianDistributionML
-Pypi package for calculation of Gaussian Distribution
+Pypi package for calculation of Gaussian Distribution.
+You can view it on site: https://pypi.org/project/gandb-distributions/
 
 ## Installation
 * To install my package please run: ```$ pip install requirements.txt```
